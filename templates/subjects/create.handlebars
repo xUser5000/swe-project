@@ -1,24 +1,36 @@
 <h1>Create a new Subject</h1>
-<form action="/subjects" method="POST">
-    <div>
-    <label>Name : </label>
-    <input type="text" class="form-control" name="name">
-    </div>
-    <div>
-    <label>code :</label>
-    <input type="text" class="form-control" name="code">
-    </div>
-    <div>
-    <label>Department : </label>
-    <select name="department">
-          
-        <option>CS</option>
-        <option>IS</option>
-        <option>IT</option>
-    </select>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-success">Save</button>
 
+<form action="/subjects" method="POST">
+    {{!-- Name --}}
+    <div>
+        <label for=" ">Name</label>
+        <input type="text" class="form-control" name="name">
+    </div>
+    <br>
+
+    {{!-- code --}}
+    <div>
+        <label for=" ">Code</label>
+        <input type="text" class="form-control" name="code">
+    </div>
+    <br>
+    {{!-- department --}}
+
+
+    <div>
+        <label for=" ">Department</label>
+        <select name="department" id="" class="form-select">
+            {{#each departments}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+
+
+        </select>
+    </div>
+    <br>
+    <div>
+        <button class="btn btn-success" type="submit">
+            Save
+        </button>
     </div>
 </form>

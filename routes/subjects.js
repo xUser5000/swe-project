@@ -1,12 +1,13 @@
 import { Router } from "express";
-import departmentModel from "../models/department.js";
-import subjectModel from "../models/subject.js";
+import department from "../models/department.js";
+import subject from "../models/subject.js";
+import { create, index, show, store } from "../controllers/subject.js";
 
 const router = new Router();
 
-router.get("/",(req,res)=>
-{
-    res.render("subjects/all");
-})
-
+router.get('/' , index);
+router.get('/create' , create);
+router.post('/' , store);
+router.get('/:id' , show);
 export default router;
+
