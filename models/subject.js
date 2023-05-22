@@ -12,6 +12,11 @@ const subject = new Schema({
         type: Schema.Types.ObjectId,
         required:false,
         ref:'department'
-    }
+    },
+    doctor:{
+        type:Schema.Types.ObjectId,
+        required:false,
+        ref: 'user',
+    },
 },{timestamps:true});
 export default model('subject' , subject);
