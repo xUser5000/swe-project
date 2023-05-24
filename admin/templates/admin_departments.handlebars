@@ -38,10 +38,16 @@
 
 </style>
 
-<button class="add-card-btn">Add New Department</button>
+<button class="add-card-btn" onclick="window.location.href = '/admin/add_department'">
+  Add New Department
+</button>
 
 <div class="card-list">
-  <div class="card">CS</div>
-  <div class="card">IS</div>
-  <div class="card">IT</div>
+  {{#each departments}}
+  <div class="card">
+    <h3>{{name}}</h3>
+    <span>Id: {{_id}}</span>
+    <br>
+    <span>Code: {{code}}</span>
+  {{/each}}
 </div>

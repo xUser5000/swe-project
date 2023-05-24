@@ -6,6 +6,8 @@ dotenv.config();
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
+import { authorizationMiddleware } from './auth/middleware.js';
+
 import { authRouter } from'./auth/router.js';
 import { adminRouter } from './admin/router.js';
 
@@ -19,6 +21,7 @@ app.set('views', ['./auth/templates', './admin/templates']);
 
 app.get('/', (req, res) => res.redirect('/auth/login'));
 app.use('/auth', authRouter);
+app.use(authorizationMiddleware);
 app.use('/admin', adminRouter);
 
 app.listen(process.env.port , () => {

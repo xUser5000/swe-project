@@ -38,12 +38,18 @@
 
 </style>
 
-<button class="add-card-btn">Create Professor Account</button>
+<button class="add-card-btn" onclick="window.location.href = '/admin/add_professor'">
+  Create Professor Account
+</button>
 
 <div class="card-list">
-  <div class="card">Dr. Nader</div>
-  <div class="card">Dr. Eman</div>
-  <div class="card">Dr. Kfafi</div>
-  <div class="card">Dr. Arabi</div>
-  <div class="card">Dr. Malhat</div>
+  {{#each professors}}
+  <div class="card">
+    <span>Id: {{_id}}</span>
+    <br>
+    <span>Username: {{username}}</span>
+    <br>
+    <span>Email: {{email}}</span>
+  </div>
+  {{/each}}
 </div>

@@ -38,11 +38,21 @@
 
 </style>
 
-<button class="add-card-btn">Add New Course</button>
+<button class="add-card-btn" onclick="window.location.href = '/admin/add_course'">
+  Add New Course
+</button>
 
 <div class="card-list">
-  <div class="card">Algorithms Analysis</div>
-  <div class="card">Software Engineering</div>
-  <div class="card">Operating Systems</div>
-  <div class="card">Database Systems</div>
+  {{#each subjects}}
+  <div class="card">
+    <h3>{{name}}</h3>
+    <span>Id: {{_id}}</span>
+    <br>
+    <span>Code: {{code}}</span>
+    <br>
+    <span>Department: {{department}}</span>
+    <br>
+    <span>Professor: {{professor}}</span>
+  </div>
+  {{/each}}
 </div>

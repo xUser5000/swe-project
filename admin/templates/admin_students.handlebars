@@ -38,12 +38,20 @@
 
 </style>
 
-<button class="add-card-btn">Create Student Account</button>
+<button class="add-card-btn" onclick="window.location.href = '/admin/add_student'">
+  Create Student Account
+</button>
 
 <div class="card-list">
-  <div class="card">Abdallah Rabie</div>
-  <div class="card">Hossam Hatem</div>
-  <div class="card">Mohamed Zeid</div>
-  <div class="card">Abdulrahman Alaa</div>
-  <div class="card">Abdallah El Shorbagy</div>
+  {{#each students}}
+  <div class="card">
+    <span>Id: {{_id}}</span>
+    <br>
+    <span>Username: {{username}}</span>
+    <br>
+    <span>Email: {{email}}</span>
+    <br>
+    <span>Academic Number: {{academic_number}}</span>
+  </div>
+  {{/each}}
 </div>

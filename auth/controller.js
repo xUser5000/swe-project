@@ -1,10 +1,10 @@
-import { User } from "./model.js";
+import { User } from "./user.js";
+import { InvalidToken } from './invalid_token.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 export const registerForm = (req,res)=>{
     res.render('authentication/register');
-
 }
 
 export const register = async(req , res)=>{
@@ -38,5 +38,10 @@ export const login = async (req , res)=>{
     const jwtToken = jwt.sign(data, process.env.JWT_SECRET);
     
     res.cookie('token' , jwtToken);
-    res.send('logged in');
+    res.redirect("/admin/dashboard");
+};
+
+export const logout = async (req , res) => {
+    res.cookie('token', null);
+    res.redirect("/");
 };
