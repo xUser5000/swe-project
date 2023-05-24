@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <style>
+    /* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+
+button {
+  padding: 5px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 5px;
+  background-color: #FFF;
+  color: #333;
+}
+
+/* Apply background color and font styles */
+body {
+  background-color: #F7F7F7;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Style the header and navigation bar */
+header {
+  background-color: #4CAF50;
+  color: #FFF;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  width: 100%;
+  padding: 0 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #FFF;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #FFF;
+  color: #333;
+}
+
+/* Style the main content area */
+main {
+  padding: 20px;
+}
+
+  </style>
+  <body>
+    <header>
+      <nav>
+        <ul class="left">
+          <li><a href="/admin/departments">Departments</a></li>
+          <li><a href="/admin/courses">Courses</a></li>
+          <li><a href="/admin/professors">Professors</a></li>
+          <li><a href="/admin/students">Students</a></li>
+        </ul>
+        <div class="right">
+          <form action="/auth/api/logout" method="post">
+            <button type="submit">Log out</button>
+          </form>
+        </div>
+        <div class="clear"></div>
+      </nav>
+    </header>
+    <main>
+
+        {{{ body }}}
+
+    </main>
+  </body>
+</html>
