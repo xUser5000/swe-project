@@ -5,10 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
-
-import subjectsRouter from './routes/subjects.js';
-import authRoutes from'./routes/auth.js';
-import {authentication} from './middleware/authentication.js';
+import { authRouter } from'./auth/router.js';
 
 
 const app =  express();
@@ -17,10 +14,10 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
-app.set('views', './templates'); 
-app.use('/' , authRoutes);
-app.use('/subjects' , authentication ,subjectsRouter)
+app.set('views', ['./auth/templates']); 
 
+app.get('/', (req, res) => res.redirect('/auth/login'));
+app.use('/auth' , authRouter);
 
 
 app.listen(process.env.port , () => {
