@@ -32,10 +32,10 @@ export const login = async (req , res)=>{
 
     const data = {
         _id: loggedUser._id,
-        email: loggedUser.email,
+        type: loggedUser.type,
     };
-    const jwtToken = jwt.sign(data,process.env.JWT_SECRET);
-    console.log(jwtToken); 
+    
+    const jwtToken = jwt.sign(data, process.env.JWT_SECRET);
     
     res.cookie('token' , jwtToken);
     res.send('logged in');
