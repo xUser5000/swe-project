@@ -1,6 +1,7 @@
 import { Department } from '../departments/department.js'
 import { Subject } from '../subjects/subject.js'
 import { User } from '../auth/user.js'
+import bcrypt from 'bcryptjs';
 
 export const addDepartment = async (req, res) => {
     await Department.create(req.body);
@@ -23,7 +24,10 @@ export const listSubjects = async (req, res) => {
 }
 
 export const addProfessor = async(req, res) => {
-    await User.create({...req.body, type: "professor"});
+    let {password} = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const encryptedPasswrd = bcrypt.hashSync(password,salt);
+    await User.create({ ...req.body, password:encryptedPasswrd, type: "professor"});
     res.redirect('/admin/professors');
 }
 
@@ -33,7 +37,10 @@ export const listProfessors = async (req, res) => {
 }
 
 export const addStudent = async (req, res) => {
-    await User.create({...req.body, type: "student"});
+    let {password} = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const encryptedPasswrd = bcrypt.hashSync(password,salt);
+    await User.create({ ...req.body, password:encryptedPasswrd, type: "student"});
     res.redirect('/admin/students');
 }
 

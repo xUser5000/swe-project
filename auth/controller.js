@@ -1,5 +1,4 @@
 import { User } from "./user.js";
-import { InvalidToken } from './invalid_token.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -15,7 +14,7 @@ export const register = async(req , res)=>{
     res.redirect('/auth/login');
 }
 
-export const login = async (req , res)=>{
+export const login = async (req , res) => {
     const {email , password} = req.body;
     const loggedUser = await User.findOne({email});
 
@@ -24,7 +23,7 @@ export const login = async (req , res)=>{
         return;
     }
 
-    const isCorrectPassword = bcrypt.compareSync(password, loggedUser.password); 
+    const isCorrectPassword = bcrypt.compareSync(password, loggedUser.password);
 
     if(!isCorrectPassword){
         return res.status(403).send("Incorrect credintials");
@@ -38,7 +37,13 @@ export const login = async (req , res)=>{
     const jwtToken = jwt.sign(data, process.env.JWT_SECRET);
     
     res.cookie('token' , jwtToken);
-    res.redirect("/admin/dashboard");
+
+    if (loggedUser.type === "admin")
+        res.redirect("/admin/dashboard");
+
+
+    if (loggedUser.type === "professor")
+        res.redirect("/professor/dashboard");
 };
 
 export const logout = async (req , res) => {

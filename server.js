@@ -10,6 +10,7 @@ import { authorizationMiddleware } from './auth/middleware.js';
 
 import { authRouter } from'./auth/router.js';
 import { adminRouter } from './admin/router.js';
+import { professorRouter } from './professor/router.js';
 
 const app =  express();
 app.use(cookieParser());
@@ -17,12 +18,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
-app.set('views', ['./auth/templates', './admin/templates']); 
+app.set('views', ['./auth/templates', './admin/templates', './professor/templates']); 
 
 app.get('/', (req, res) => res.redirect('/auth/login'));
 app.use('/auth', authRouter);
 app.use(authorizationMiddleware);
 app.use('/admin', adminRouter);
+app.use('/professor', professorRouter);
 
 app.listen(process.env.port , () => {
     
