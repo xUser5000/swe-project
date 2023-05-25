@@ -1,0 +1,49 @@
+<style>
+
+table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid#ddd;
+}
+
+td {
+  vertical-align: middle;
+}
+
+input[type=checkbox] {
+  margin: 0;
+}
+
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Academic Number</th>
+      <th>Present</th>
+    </tr>
+  </thead>
+  <tbody id="table-body">
+    {{#each students}}
+    <tr>
+      <td>{{username}}</td>
+      <td>{{email}}</td>
+      <td>{{academic_number}}</td>
+      <td><input type="checkbox"></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

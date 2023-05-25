@@ -7,7 +7,8 @@ import {
     addProfessor,
     listProfessors,
     addStudent,
-    listStudents
+    listStudents,
+    generateAttendanceSheet
 } from './controller.js';
 
 const adminRouter = new Router();
@@ -29,5 +30,7 @@ adminRouter.post("/add_professor", addProfessor);
 adminRouter.get("/students", listStudents);
 adminRouter.get("/add_student", (req, res) => res.render("admin_add_student"));
 adminRouter.post("/add_student", addStudent);
+
+adminRouter.get("/attendance_sheet", generateAttendanceSheet);
 
 export { adminRouter };

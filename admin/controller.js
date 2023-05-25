@@ -1,6 +1,7 @@
 import { Department } from '../departments/department.js'
 import { Subject } from '../subjects/subject.js'
 import { User } from '../auth/user.js'
+import { StudentSubject } from '../student/students_subjects.js';
 import bcrypt from 'bcryptjs';
 
 export const addDepartment = async (req, res) => {
@@ -48,3 +49,11 @@ export const listStudents = async (req, res) => {
     const students = await User.find({ type: "student" }).lean();
     res.render("admin_students", { students });
 }
+
+export const generateAttendanceSheet = async (req, res) => {
+    const course_id = req.query.course_id;
+    const students_subjects = await StudentSubject.find({ course_id }).lean();
+    const student_ids = students_subjects.map(ss => ss.student_id);
+    const students = await User.find({ _id: { $in: student_ids } }).lean();
+    res.render("admin_attendance_sheet", { students });
+};
