@@ -44,6 +44,9 @@ export const login = async (req , res) => {
 
     if (loggedUser.type === "professor")
         res.redirect("/professor/dashboard");
+
+    if (loggedUser.type === "student")
+        res.redirect("/student/dashboard");
 };
 
 export const logout = async (req , res) => {
